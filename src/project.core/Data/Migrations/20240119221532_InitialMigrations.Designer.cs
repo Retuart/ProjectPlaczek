@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using project.core.Data;
@@ -11,9 +12,11 @@ using project.core.Data;
 namespace project.core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240119221532_InitialMigrations")]
+    partial class InitialMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,20 +49,6 @@ namespace project.core.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "cd1c19ff-191b-489f-8532-1a5895145a05",
-                            Name = "admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "12e7adef-0441-448e-838b-380a73502234",
-                            Name = "member",
-                            NormalizedName = "MEMBER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -149,24 +138,6 @@ namespace project.core.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "a9983ec3-52b5-4d94-aeef-9d83bff18ea9",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "888cbb3e-cab6-48e0-a1f4-76fdd8808eef",
-                            Email = "admin@localhost",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@LOCALHOST",
-                            NormalizedUserName = "SUPERADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE2WO8npEdRX4OFXNdHX8Q+lkbi2Ztvuno68a+tBkNsNB89RmcMq8+d6cAdMc76sRQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "cddac0b8-3b7e-4faa-a09c-bd5c1f3d82aa",
-                            TwoFactorEnabled = false,
-                            UserName = "SuperAdmin"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -231,13 +202,6 @@ namespace project.core.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "a9983ec3-52b5-4d94-aeef-9d83bff18ea9",
-                            RoleId = "cd1c19ff-191b-489f-8532-1a5895145a05"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

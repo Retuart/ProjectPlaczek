@@ -35,6 +35,8 @@ public static class ModelBuilderExtensions
         superAdmin.NormalizedEmail = superAdmin.Email.ToUpper();
         superAdmin.PasswordHash = passwordhasher.HashPassword(superAdmin, pwd);
 
+        builder.Entity<IdentityUser>().HasData(superAdmin);
+
         builder.Entity<IdentityUserRole<string>>().HasData(
             new IdentityUserRole<string>
             {

@@ -16,9 +16,9 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<roomModel> rooms { get; set; }
     public DbSet<movieModel> movies { get; set; }
 
-    // protected override void OnModelCreating(ModelBuilder builder)
-    // {
-    //     base.OnModelCreating(builder);
-    //     builder.Seed();
-    // }
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        builder.Seed();
+    }
 }
