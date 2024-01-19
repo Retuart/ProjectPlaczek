@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using project.core.Models;
 
 namespace project.core.Data;
 
@@ -9,4 +10,8 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
+
+    public DbSet<seanceModel> seances { get; set; }
+    public DbSet<roomModel> rooms { get; set; }
+    public DbSet<movieModel> movies { get; set; }
 }
