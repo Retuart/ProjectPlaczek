@@ -56,7 +56,7 @@ namespace project.core
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price")] TicketController ticket)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
