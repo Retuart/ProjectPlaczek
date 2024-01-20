@@ -24,7 +24,7 @@ namespace project.core
         // GET: Ticket
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Ticket.ToListAsync());
+            return View(await _context.Tickets.ToListAsync());
         }
 
         // GET: Ticket/Details/5
@@ -35,7 +35,7 @@ namespace project.core
                 return NotFound();
             }
 
-            var ticket = await _context.Ticket
+            var ticket = await _context.Tickets
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ticket == null)
             {
@@ -75,7 +75,7 @@ namespace project.core
                 return NotFound();
             }
 
-            var ticket = await _context.Ticket.FindAsync(id);
+            var ticket = await _context.Tickets.FindAsync(id);
             if (ticket == null)
             {
                 return NotFound();
@@ -126,7 +126,7 @@ namespace project.core
                 return NotFound();
             }
 
-            var ticket = await _context.Ticket
+            var ticket = await _context.Tickets
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ticket == null)
             {
@@ -141,10 +141,10 @@ namespace project.core
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ticket = await _context.Ticket.FindAsync(id);
+            var ticket = await _context.Tickets.FindAsync(id);
             if (ticket != null)
             {
-                _context.Ticket.Remove(ticket);
+                _context.Tickets.Remove(ticket);
             }
 
             await _context.SaveChangesAsync();
@@ -153,7 +153,7 @@ namespace project.core
 
         private bool TicketExists(int id)
         {
-            return _context.Ticket.Any(e => e.Id == id);
+            return _context.Tickets.Any(e => e.Id == id);
         }
     }
 }

@@ -12,9 +12,13 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
 
-    public DbSet<Seance> seances { get; set; }
-    public DbSet<Room> rooms { get; set; }
-    public DbSet<Movie> movies { get; set; }
+    public DbSet<Seance> Seances { get; set; }
+    public DbSet<Room> Rooms { get; set; }
+    public DbSet<Movie> Movies { get; set; }
+    public DbSet<Ticket> Tickets { get; set; }
+    public DbSet<TicketOrder> TicketOrders { get; set; }
+    public DbSet<Order> Orders { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -22,5 +26,4 @@ public class ApplicationDbContext : IdentityDbContext
         ModelBuilderExtensions.Seed(builder);
     }
 
-public DbSet<project.core.Models.Ticket> Ticket { get; set; } = default!;
 }

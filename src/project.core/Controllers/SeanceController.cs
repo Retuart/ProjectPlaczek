@@ -18,8 +18,8 @@ namespace project.core.Controllers
         // GET: Seance
         public async Task<IActionResult> Index()
         {
-            return _context.seances != null ? 
-                    View(await _context.seances
+            return _context.Seances != null ? 
+                    View(await _context.Seances
                         .Include(s => s.Movie)
                         .Include(s => s.Room)
                         .ToListAsync()) :
@@ -29,12 +29,12 @@ namespace project.core.Controllers
         // GET: Seance/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.seances == null)
+            if (id == null || _context.Seances == null)
             {
                 return NotFound();
             }
 
-            var seance = await _context.seances
+            var seance = await _context.Seances
                 .Include(s => s.Movie)
                 .Include(s => s.Room)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -59,7 +59,7 @@ namespace project.core.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.seances.Add(seance);
+                _context.Seances.Add(seance);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -69,12 +69,12 @@ namespace project.core.Controllers
         // GET: Seance/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.seances == null)
+            if (id == null || _context.Seances == null)
             {
                 return NotFound();
             }
 
-            var seance = await _context.seances.FindAsync(id);
+            var seance = await _context.Seances.FindAsync(id);
             if (seance == null)
             {
                 return NotFound();
@@ -96,7 +96,7 @@ namespace project.core.Controllers
             {
                 try
                 {
-                    _context.seances.Update(seance);
+                    _context.Seances.Update(seance);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -118,12 +118,12 @@ namespace project.core.Controllers
         // GET: Seance/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.seances == null)
+            if (id == null || _context.Seances == null)
             {
                 return NotFound();
             }
 
-            var seance = await _context.seances
+            var seance = await _context.Seances
                 .Include(s => s.Movie)
                 .Include(s => s.Room)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -140,10 +140,10 @@ namespace project.core.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var seance = await _context.seances.FindAsync(id);
+            var seance = await _context.Seances.FindAsync(id);
             if (seance != null)
             {
-                _context.seances.Remove(seance);
+                _context.Seances.Remove(seance);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
@@ -151,7 +151,7 @@ namespace project.core.Controllers
 
         private bool SeanceExists(int id)
         {
-            return _context.seances.Any(e => e.Id == id);
+            return _context.Seances.Any(e => e.Id == id);
         }
     }
 }

@@ -19,18 +19,18 @@ public class MovieController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var movies = _context.movies.ToListAsync();
+        var movies = _context.Movies.ToListAsync();
         return View(await movies);
     }
 
     public async Task<IActionResult> Details(int? id)
     {
-        if (id == null || _context.movies == null)
+        if (id == null || _context.Movies == null)
         {
             return NotFound();
         }
 
-        var movie = _context.movies.FirstOrDefaultAsync();
+        var movie = _context.Movies.FirstOrDefaultAsync();
         if (movie == null)
         {
             return NotFound();
@@ -58,12 +58,12 @@ public class MovieController : Controller
 
     public async Task<IActionResult> Edit(int? id)
     {
-        if (id == null || _context.movies == null)
+        if (id == null || _context.Movies == null)
         {
             return NotFound();
         }
 
-        var movie = await _context.movies.FindAsync(id);
+        var movie = await _context.Movies.FindAsync(id);
 
         if (movie == null)
         {
@@ -106,12 +106,12 @@ public class MovieController : Controller
 
     public async Task<IActionResult> Delete(int? id)
     {
-        if (id == null || _context.movies == null)
+        if (id == null || _context.Movies == null)
         {
             return NotFound();
         }
 
-        var movie = await _context.movies.FirstOrDefaultAsync(m => m.Id == id);
+        var movie = await _context.Movies.FirstOrDefaultAsync(m => m.Id == id);
         if (movie == null)
         {
             return NotFound();
@@ -123,14 +123,14 @@ public class MovieController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        if (_context.movies == null)
+        if (_context.Movies == null)
         {
             return Problem("Entity set 'ApplicationDbContext.movies'  is null.");
         }
-        var movie = await _context.movies.FindAsync(id);
+        var movie = await _context.Movies.FindAsync(id);
         if (movie != null)
         {
-            _context.movies.Remove(movie);
+            _context.Movies.Remove(movie);
         }
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
@@ -138,6 +138,6 @@ public class MovieController : Controller
 
     private bool MovieExists(int id)
     {
-        return (_context.movies?.Any(e => e.Id == id)).GetValueOrDefault();
+        return (_context.Movies?.Any(e => e.Id == id)).GetValueOrDefault();
     }
 }
