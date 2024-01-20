@@ -20,7 +20,7 @@ namespace project.core.Controllers
         {
             return _context.Rooms != null ? 
                     View(await _context.Rooms.ToListAsync()) :
-                    Problem("Entity set 'ApplicationDbContext.rooms' is null.");
+                    Problem("Entity set 'ApplicationDbContext.Rooms' is null.");
         }
 
         // GET: Room/Details/5
@@ -50,7 +50,7 @@ namespace project.core.Controllers
         // POST: Room/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,capacity")] Room room)
+        public async Task<IActionResult> Create([Bind("Id,Name,Capacity")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace project.core.Controllers
         // POST: Room/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,capacity")] Room room)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Capacity")] Room room)
         {
             if (id != room.Id)
             {
