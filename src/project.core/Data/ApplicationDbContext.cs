@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using project.core.Models;
@@ -19,6 +19,8 @@ public class ApplicationDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-        builder.Seed();
+        ModelBuilderExtensions.Seed(builder);
     }
+
+public DbSet<project.core.Models.Ticket> Ticket { get; set; } = default!;
 }

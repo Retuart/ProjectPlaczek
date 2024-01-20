@@ -7,7 +7,7 @@ namespace project.core.Data;
 
 public static class ModelBuilderExtensions
 {
-    public static void Seed(this ModelBuilder builder)
+    public static void Seed(ModelBuilder builder)
     {
         string pwd = "admin";
         var passwordhasher = new PasswordHasher<IdentityUser>();
