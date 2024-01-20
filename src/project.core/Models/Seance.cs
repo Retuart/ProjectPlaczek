@@ -5,14 +5,14 @@ namespace project.core.Models;
 public class Seance
 {
 
-    public int id { get; set; }
-    public int id_movie { get; set; }
-    public virtual Movie movie { get; set; }
-    public int id_room { get; set; }
-    public virtual Room room { get; set; }
+    public int Id { get; set; }
+    public int Id_movie { get; set; }
+    public virtual Movie Movie { get; set; }
+    public int Id_room { get; set; }
+    public virtual Room Room { get; set; }
 
-    public DateTime start { get; set; }
-    public DateTime end() { return start.AddMinutes(movie.duration); }
+    public DateTime Start { get; set; }
+    public DateTime End() { return Start.AddMinutes(Movie.Duration); }
     public Order[]? Orders { get; set; }
-    public int FreeSpace() { return room.capacity - Orders?.Sum(o => o?.TicketCount() ) ?? 0; }
+    public int FreeSpace() { return Room.Capacity - Orders?.Sum(o => o?.TicketCount() ) ?? 0; }
 }

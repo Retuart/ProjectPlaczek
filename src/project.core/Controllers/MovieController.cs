@@ -76,7 +76,7 @@ public class MovieController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("id,title,description,duration,image")] Movie movie)
     {
-        if (id != movie.id)
+        if (id != movie.Id)
         {
             return NotFound();
         }
@@ -90,7 +90,7 @@ public class MovieController : Controller
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MovieExists(movie.id))
+                if (!MovieExists(movie.Id))
                 {
                     return NotFound();
                 }
@@ -111,7 +111,7 @@ public class MovieController : Controller
             return NotFound();
         }
 
-        var movie = await _context.movies.FirstOrDefaultAsync(m => m.id == id);
+        var movie = await _context.movies.FirstOrDefaultAsync(m => m.Id == id);
         if (movie == null)
         {
             return NotFound();
@@ -138,6 +138,6 @@ public class MovieController : Controller
 
     private bool MovieExists(int id)
     {
-        return (_context.movies?.Any(e => e.id == id)).GetValueOrDefault();
+        return (_context.movies?.Any(e => e.Id == id)).GetValueOrDefault();
     }
 }

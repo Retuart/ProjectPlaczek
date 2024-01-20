@@ -20,8 +20,8 @@ namespace project.core.Controllers
         {
             return _context.seances != null ? 
                     View(await _context.seances
-                        .Include(s => s.movie)
-                        .Include(s => s.room)
+                        .Include(s => s.Movie)
+                        .Include(s => s.Room)
                         .ToListAsync()) :
                     Problem("Entity set 'ApplicationDbContext.seances' is null.");
         }
@@ -35,9 +35,9 @@ namespace project.core.Controllers
             }
 
             var seance = await _context.seances
-                .Include(s => s.movie)
-                .Include(s => s.room)
-                .FirstOrDefaultAsync(m => m.id == id);
+                .Include(s => s.Movie)
+                .Include(s => s.Room)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (seance == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace project.core.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,id_movie,start,end,id_room")] Seance seance)
         {
-            if (id != seance.id)
+            if (id != seance.Id)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace project.core.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SeanceExists(seance.id))
+                    if (!SeanceExists(seance.Id))
                     {
                         return NotFound();
                     }
@@ -124,9 +124,9 @@ namespace project.core.Controllers
             }
 
             var seance = await _context.seances
-                .Include(s => s.movie)
-                .Include(s => s.room)
-                .FirstOrDefaultAsync(m => m.id == id);
+                .Include(s => s.Movie)
+                .Include(s => s.Room)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (seance == null)
             {
                 return NotFound();
@@ -151,7 +151,7 @@ namespace project.core.Controllers
 
         private bool SeanceExists(int id)
         {
-            return _context.seances.Any(e => e.id == id);
+            return _context.seances.Any(e => e.Id == id);
         }
     }
 }

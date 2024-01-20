@@ -3,7 +3,7 @@ namespace project.core.Models;
 public class Room
 {
 
-    public int id { get; set; }
-    public int capacity { get; set; }
+    public int Id { get; set; }
+    public int Capacity { get; set; }
 
 }

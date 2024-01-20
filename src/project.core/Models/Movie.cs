@@ -3,11 +3,11 @@ namespace project.core.Models;
 public class Movie
 {
 
-    public int id { get; set; }
-    public string title { get; set; }
-    public string description { get; set; }
-    public int duration { get; set; }
-    public string image { get; set; }
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public int Duration { get; set; }
+    public string Image { get; set; }
 
 
 }

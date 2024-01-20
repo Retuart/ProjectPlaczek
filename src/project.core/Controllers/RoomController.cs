@@ -32,7 +32,7 @@ namespace project.core.Controllers
             }
 
             var room = await _context.rooms
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (room == null)
             {
                 return NotFound();
@@ -82,7 +82,7 @@ namespace project.core.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,capacity")] Room room)
         {
-            if (id != room.id)
+            if (id != room.Id)
             {
                 return NotFound();
             }
@@ -96,7 +96,7 @@ namespace project.core.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RoomExists(room.id))
+                    if (!RoomExists(room.Id))
                     {
                         return NotFound();
                     }
@@ -119,7 +119,7 @@ namespace project.core.Controllers
             }
 
             var room = await _context.rooms
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (room == null)
             {
                 return NotFound();
@@ -144,7 +144,7 @@ namespace project.core.Controllers
 
         private bool RoomExists(int id)
         {
-            return _context.rooms.Any(e => e.id == id);
+            return _context.rooms.Any(e => e.Id == id);
         }
     }
 }
