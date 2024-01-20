@@ -26,8 +26,8 @@ public static class ModelBuilderExtensions
 
         var superAdmin = new IdentityUser
         {
-            UserName = "SuperAdmin",
-            Email = "admin@localhost",
+            UserName = "superadmin@localhost",
+            Email = "superadmin@localhost",
             EmailConfirmed = true
         };
 
