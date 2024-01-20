@@ -12,9 +12,9 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
 
-    public DbSet<seanceModel> seances { get; set; }
-    public DbSet<roomModel> rooms { get; set; }
-    public DbSet<movieModel> movies { get; set; }
+    public DbSet<Seance> seances { get; set; }
+    public DbSet<Room> rooms { get; set; }
+    public DbSet<Movie> movies { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

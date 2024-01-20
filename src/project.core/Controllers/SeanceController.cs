@@ -55,7 +55,7 @@ namespace project.core.Controllers
         // POST: Seance/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,id_movie,start,end,id_room")] seanceModel seance)
+        public async Task<IActionResult> Create([Bind("id,id_movie,start,end,id_room")] Seance seance)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace project.core.Controllers
         // POST: Seance/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,id_movie,start,end,id_room")] seanceModel seance)
+        public async Task<IActionResult> Edit(int id, [Bind("id,id_movie,start,end,id_room")] Seance seance)
         {
             if (id != seance.id)
             {

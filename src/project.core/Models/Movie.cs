@@ -1,6 +1,6 @@
 namespace project.core.Models;
 
-public class movieModel
+public class Movie
 {
 
     public int id { get; set; }

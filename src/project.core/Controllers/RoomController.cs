@@ -50,7 +50,7 @@ namespace project.core.Controllers
         // POST: Room/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,capacity")] roomModel room)
+        public async Task<IActionResult> Create([Bind("id,capacity")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace project.core.Controllers
         // POST: Room/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,capacity")] roomModel room)
+        public async Task<IActionResult> Edit(int id, [Bind("id,capacity")] Room room)
         {
             if (id != room.id)
             {

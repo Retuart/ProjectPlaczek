@@ -1,6 +1,6 @@
 namespace project.core.Models;
 
-public class roomModel
+public class Room
 {
 
     public int id { get; set; }
