@@ -30,12 +30,12 @@ public class MovieController : Controller
             return NotFound();
         }
 
-        var movie = _context.Movies.FirstOrDefaultAsync();
+        var movie = await _context.Movies.FirstOrDefaultAsync(m => m.Id == id);
         if (movie == null)
         {
             return NotFound();
         }
-        return View(await movie);
+        return View(movie);
     }
 
     public IActionResult Create()
@@ -45,7 +45,7 @@ public class MovieController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("id,title,description,duration,image")] Movie movie)
+    public async Task<IActionResult> Create([Bind("Id,Title,Description,Duration,Image")] Movie movie)
     {
         if (ModelState.IsValid)
         {
@@ -64,7 +64,6 @@ public class MovieController : Controller
         }
 
         var movie = await _context.Movies.FindAsync(id);
-
         if (movie == null)
         {
             return NotFound();
@@ -74,7 +73,7 @@ public class MovieController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("id,title,description,duration,image")] Movie movie)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Duration,Image")] Movie movie)
     {
         if (id != movie.Id)
         {
@@ -123,16 +122,12 @@ public class MovieController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        if (_context.Movies == null)
-        {
-            return Problem("Entity set 'ApplicationDbContext.movies'  is null.");
-        }
         var movie = await _context.Movies.FindAsync(id);
         if (movie != null)
         {
             _context.Movies.Remove(movie);
+            await _context.SaveChangesAsync();
         }
-        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
     }
 
