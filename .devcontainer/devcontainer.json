@@ -16,7 +16,9 @@
 			"extensions": [
 				"ms-dotnettools.csdevkit",
 				"ms-dotnettools.vscodeintellicode-csharp",
-				"codeium.codeium"
+				"ms-dotnettools.csharp",
+				"codeium.codeium",
+				"mhutchie.git-graph"
 			]
 		}
 	}
