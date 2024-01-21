@@ -4,14 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -19,11 +11,7 @@
     <thead>
         <tr>
             <th>
-                @{
-                    
-                    var MovieName = Model.FirstOrDefault().Seance.MovieName();
-                }
-                @Html.DisplayNameFor(model => MovieName)
+                @Html.DisplayNameFor(model => model.Seance.Movie.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreateDate)
@@ -33,10 +21,9 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        MovieName = item.Seance.MovieName();
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => MovieName)
+                @Html.DisplayFor(modelItem => item.Seance.Movie.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreateDate)
@@ -49,5 +36,3 @@
 }
     </tbody>
 </table>
-</body>
-</html>
