@@ -4,10 +4,12 @@ using project.core.Data;
 using project.core.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 
 namespace project.core.Controllers
 {
+    [Authorize]
     public class SeanceController : Controller
     {
         private readonly ApplicationDbContext _context; 

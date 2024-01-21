@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using project.core.Data;
 using project.core.Models;
 using System.Threading.Tasks;
 
 namespace project.core.Controllers
 {
+    [Authorize]
     public class RoomController : Controller
     {
         private readonly ApplicationDbContext _context;
