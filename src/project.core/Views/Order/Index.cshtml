@@ -16,6 +16,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.CreateDate)
             </th>
+            <th>
+                Price
+            </th>
+            <th>
+                TicketCount
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -27,6 +33,14 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @{var price = item.PriceSum();}
+                @Html.DisplayFor(modelItem => price)
+            </td>
+            <td>
+                @{var ticketCount = item.TicketCount();}
+                @Html.DisplayFor(modelItem => ticketCount)
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+
 namespace project.core.Models;
 
 public class Order 
@@ -5,7 +7,7 @@ public class Order
 
     public int Id { get; set; }
     public int[]? OrderDetailsIds { get; set; }
-    public virtual OrderDetails[]? OrderDetails { get; set; }
+    public virtual Collection<OrderDetails>? OrderDetails { get; set; }
     public int SeanceId { get; set; }
     public virtual Seance? Seance { get; set; }
 
