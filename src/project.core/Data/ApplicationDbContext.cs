@@ -16,7 +16,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Room> Rooms { get; set; }
     public DbSet<Movie> Movies { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
-    public DbSet<TicketOrder> TicketOrders { get; set; }
+    public DbSet<OrderDetails> TicketOrders { get; set; }
     public DbSet<Order> Orders { get; set; }
 
 
