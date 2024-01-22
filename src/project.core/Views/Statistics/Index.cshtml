@@ -1,0 +1,35 @@
+@model project.core.Controllers.SeanceStatisticsViewModel
+
+@{
+    ViewData["Title"] = "Statystyki Seansu";
+}
+
+<h2>Statystyki Seansu</h2>
+
+<div>
+    <h3>Film: @Model.MovieName</h3>
+    <p>Id seansu: @Model.SeanceId</p>
+    <p>Łączna liczba sprzedanych biletów: @Model.TotalTicketsSold</p>
+    <p>Całkowity przychód: @Model.TotalRevenue zł</p>
+
+    <h4>Szczegóły sprzedaży biletów:</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nazwa biletu</th>
+                <th>Liczba sprzedanych</th>
+                <th>Przychód</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in Model.TicketsSoldDetails)
+            {
+                <tr>
+                    <td>@ticket.TicketName</td>
+                    <td>@ticket.QuantitySold</td>
+                    <td>@ticket.Revenue zł</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
