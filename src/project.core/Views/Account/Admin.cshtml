@@ -1,0 +1,9 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@if (!SignInManager.IsSignedIn(User) || !User.IsInRole("Admin"))
+{
+    <form asp-controller="Account" asp-action="MakeMeAdmin" method="post">
+        <button type="submit">Zostań Adminem</button>
+    </form>
+}
