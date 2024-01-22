@@ -21,19 +21,21 @@ namespace project.core
             _context = context;
         }
 
-        // GET: OrderDetails
-        // public async Task<IActionResult> Index()
-        // {
-        //     var applicationDbContext = _context.TicketOrders.Include(o => o.Order).Include(o => o.Ticket);
-        //     return View(await applicationDbContext.ToListAsync());
-        // }
-
         // GET: OrderDetails/Details/5
 
         // GET: OrderDetails/Create
         public IActionResult Create(int OrderId)
         {
-            // ViewData["TicketId"] = new SelectList(_context.Tickets, "Id", "Id");
+            var Order = _context.Orders.FirstOrDefaultAsync(o => o.Id == OrderId);
+            if  (Order == null) { 
+                return NotFound();
+            }
+            
+            ViewData["FreeSpace"] = _context.Orders
+                .Include(o => o.OrderDetails)
+                .Include(o => o.Seance)
+                .Include(o => o.Seance.Room)
+                .FirstOrDefault(o => o.Id == OrderId).Seance.FreeSpace();
             ViewData["TicketId"] = _context.Tickets
                 .ToList()
                 .Select(t => new SelectListItem{
@@ -52,11 +54,22 @@ namespace project.core
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,TicketId,OrderId,Count")] OrderDetails orderDetails)
         {
+
             if (ModelState.IsValid)
             {
-                _context.Add(orderDetails);
-                await _context.SaveChangesAsync();
-                return  RedirectToAction("Details", "Order", new { id = orderDetails.OrderId });
+                var count = await _context.Orders
+                    .Include(o => o.OrderDetails)
+                    .Include(o => o.Seance)
+                    .Include(o => o.Seance.Room)
+                    .FirstOrDefaultAsync(o => o.Id == orderDetails.OrderId);
+                if(count.Seance.FreeSpace() - orderDetails.Count >= 0 )
+                {
+                    _context.Add(orderDetails);
+                    await _context.SaveChangesAsync();
+                    return  RedirectToAction("Details", "Order", new { id = orderDetails.OrderId });
+
+                }
+                ModelState.AddModelError("Count", "There is not enough space in this room");
             }
             ViewData["TicketId"] = new SelectList(_context.Tickets, "Id", "Name", orderDetails.TicketId);
             return View(orderDetails);

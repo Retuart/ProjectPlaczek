@@ -15,6 +15,6 @@ public class Seance
 
     public DateTime Start { get; set; }
     public DateTime End() { return Start.AddMinutes(Movie.Duration); }
-    public int FreeSpace() { return Room.Capacity - Orders?.Sum(o => o?.TicketCount() ) ?? 0; }
+    public int FreeSpace() { return Room.Capacity - Orders?.Sum(o => o?.TicketCount() ) ?? Room.Capacity; }
     public string MovieName() { return Movie.Title; }
 }
