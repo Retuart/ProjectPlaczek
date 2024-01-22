@@ -9,6 +9,7 @@ public class Seance
     public int Id { get; set; }
     public int Id_movie { get; set; }
     public virtual Movie? Movie { get; set; }
+    [Display(Name = "Room Name")]
     public int Id_room { get; set; }
     [Display(Name = "Room Name")]
     public virtual Room? Room { get; set; }

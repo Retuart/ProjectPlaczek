@@ -9,6 +9,7 @@ public class Order
     public int Id { get; set; }
     public int[]? OrderDetailsIds { get; set; }
     public virtual Collection<OrderDetails>? OrderDetails { get; set; }
+    [Display(Name = "Seance Name")]
     public int SeanceId { get; set; }
     public virtual Seance? Seance { get; set; }
 

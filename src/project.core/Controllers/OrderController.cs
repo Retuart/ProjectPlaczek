@@ -76,9 +76,17 @@ namespace project.core.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(order);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // Manually load related entities if needed
+                order.Seance = await _context.Seances.FindAsync(order.SeanceId);
+
+                // Validate if the loaded entities are not null (optional, based on your requirements)
+                if (order.Seance != null)
+                {
+                    _context.Add(order);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError(string.Empty, "Invalid seance");
             }
             ViewData["SeanceId"] = new SelectList(_context.Seances, "Id", "Id", order.SeanceId);
             return View(order);

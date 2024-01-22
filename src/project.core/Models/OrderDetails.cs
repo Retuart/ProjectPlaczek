@@ -9,6 +9,7 @@ public class OrderDetails
     [Display(Name = "Ticket Name")]
     public int TicketId { get; set; }
     public virtual Ticket? Ticket { get; set; }
+    [Display(Name = "Order Name")]
     public int OrderId { get; set; }
     public virtual Order? Order { get; set; }
     [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
