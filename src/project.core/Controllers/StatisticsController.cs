@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace project.core.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StatisticsController : Controller
     {
         private readonly ApplicationDbContext _context;
