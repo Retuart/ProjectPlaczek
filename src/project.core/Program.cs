@@ -22,17 +22,7 @@ public class Program
             .AddEntityFrameworkStores<ApplicationDbContext>();
         builder.Services.AddControllersWithViews();
 
-        
-
         var app = builder.Build();
-        if (app.Environment.IsDevelopment())
-        {
-            using (var scope = app.Services.CreateScope())
-            {
-                await InitializeRoles(scope.ServiceProvider);
-            }
-        }
-
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
@@ -66,18 +56,4 @@ public class Program
 
         app.Run();
     }
-    private static async Task InitializeRoles(IServiceProvider serviceProvider)
-        {
-            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            string[] roleNames = { "Admin", "User" };
-            foreach (var roleName in roleNames)
-            {
-                var roleExist = await roleManager.RoleExistsAsync(roleName);
-                if (!roleExist)
-                {
-                    
-                    var roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
-                }
-            }
-        }
 }
