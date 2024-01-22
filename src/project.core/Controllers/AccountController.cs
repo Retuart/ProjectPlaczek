@@ -8,7 +8,7 @@ using project.core.Models.DTO;
 
 namespace project.core.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 public class AccountController : Controller
 {
     private readonly UserManager<IdentityUser> _userManager;

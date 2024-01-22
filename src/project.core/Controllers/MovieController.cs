@@ -7,7 +7,7 @@ using project.core.Models;
 
 namespace project.core.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 public class MovieController : Controller
 {
     private readonly ApplicationDbContext _context;

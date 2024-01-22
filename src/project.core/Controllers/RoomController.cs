@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace project.core.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class RoomController : Controller
     {
         private readonly ApplicationDbContext _context;

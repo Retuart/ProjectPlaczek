@@ -27,7 +27,7 @@ namespace project.core.Controllers
             var applicationDbContext = _context.Orders
                 .Include(o => o.Seance)
                 .Include(o => o.Seance.Movie)
-                .Include(o => o.OrderDetails)
+                .Include(o => o.OrderDetails)!
                 .ThenInclude(o => o.Ticket);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -43,7 +43,7 @@ namespace project.core.Controllers
             var order = await _context.Orders
                 .Include(o => o.Seance)
                 .Include(o => o.Seance.Movie)
-                .Include(o => o.OrderDetails)
+                .Include(o => o.OrderDetails)!
                 .ThenInclude(o => o.Ticket)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)

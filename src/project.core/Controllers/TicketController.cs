@@ -11,7 +11,7 @@ using project.core.Models;
 
 namespace project.core
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class TicketController : Controller
     {
         private readonly ApplicationDbContext _context;
