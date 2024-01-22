@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using project.core.Data;
-using project.core.Models;
-using System.Linq;
-using System.Threading.Tasks;
+using project.core.Models.DTO;
+
 
 namespace project.core.Controllers
 {
@@ -49,21 +48,5 @@ namespace project.core.Controllers
 
             return View(stats);
         }
-    }
-
-    public class SeanceStatisticsViewModel
-    {
-        public int SeanceId { get; set; }
-        public string MovieName { get; set; }
-        public int TotalTicketsSold { get; set; }
-        public int TotalRevenue { get; set; }
-        public List<TicketSaleDetails> TicketsSoldDetails { get; set; }
-    }
-
-    public class TicketSaleDetails
-    {
-        public string TicketName { get; set; }
-        public int QuantitySold { get; set; }
-        public int Revenue { get; set; }
     }
 }

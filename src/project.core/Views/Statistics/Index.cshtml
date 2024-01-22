@@ -1,33 +1,35 @@
-@model project.core.Controllers.SeanceStatisticsViewModel
+@model project.core.Models.DTO.SeanceStatisticsViewModel
 
 @{
-    ViewData["Title"] = "Statystyki Seansu";
+    ViewData["Title"] = "Seans Statistics";
 }
 
-<h2>Statystyki Seansu</h2>
+<h2>Seans Statistics</h2>
 
 <div>
-    <h3>Film: @Model.MovieName</h3>
-    <p>Id seansu: @Model.SeanceId</p>
-    <p>Łączna liczba sprzedanych biletów: @Model.TotalTicketsSold</p>
-    <p>Całkowity przychód: @Model.TotalRevenue zł</p>
+    <h3>
+        @Html.DisplayNameFor(model => model.MovieName): @Html.DisplayFor(model => model.MovieName)
+    </h3>
+    @* <p>Id seansu: @Model.SeanceId</p> *@
+    <p>@Html.DisplayNameFor(model => model.TotalTicketsSold): @Html.DisplayFor(model => model.TotalTicketsSold)</p>
+    <p>@Html.DisplayNameFor(model => model.TotalRevenue): @Html.DisplayFor(model => model.TotalRevenue) zł</p>
 
-    <h4>Szczegóły sprzedaży biletów:</h4>
+    <h4>Ticket sale details:</h4>
     <table class="table">
         <thead>
             <tr>
-                <th>Nazwa biletu</th>
-                <th>Liczba sprzedanych</th>
-                <th>Przychód</th>
+                <th>@Html.DisplayNameFor(model => model.TicketsSoldDetails[0].TicketName)</th>
+                <th>@Html.DisplayNameFor(model => model.TicketsSoldDetails[0].QuantitySold)</th>
+                <th>@Html.DisplayNameFor(model => model.TicketsSoldDetails[0].Revenue)</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var ticket in Model.TicketsSoldDetails)
             {
                 <tr>
-                    <td>@ticket.TicketName</td>
-                    <td>@ticket.QuantitySold</td>
-                    <td>@ticket.Revenue zł</td>
+                    <td>@Html.DisplayFor(modelItem => ticket.TicketName)</td>
+                    <td>@Html.DisplayFor(modelItem => ticket.QuantitySold)</td>
+                    <td>@Html.DisplayFor(modelItem => ticket.Revenue)</td>
                 </tr>
             }
         </tbody>
