@@ -39,7 +39,7 @@ namespace project.core
             ViewData["TicketId"] = _context.Tickets
                 .ToList()
                 .Select(t => new SelectListItem{
-                    Text = t.Name,
+                    Text = $"{t.Name} {t.Price}",
                     Value = t.Id.ToString()
                 });
 
@@ -71,7 +71,19 @@ namespace project.core
                 }
                 ModelState.AddModelError("Count", "There is not enough space in this room");
             }
-            ViewData["TicketId"] = new SelectList(_context.Tickets, "Id", "Name", orderDetails.TicketId);
+            ViewData["FreeSpace"] = _context.Orders
+                .Include(o => o.OrderDetails)
+                .Include(o => o.Seance)
+                .Include(o => o.Seance.Room)
+                .FirstOrDefault(o => o.Id == orderDetails.Id).Seance.FreeSpace();
+            // ViewData["TicketId"] = new SelectList(_context.Tickets, "Id", "Name", orderDetails.TicketId);
+            ViewData["TicketId"] = _context.Tickets
+                .ToList()
+                .Select(t => new SelectListItem{
+                    Text = $"{t.Name} {t.Price}",
+                    Value = t.Id.ToString()
+                });
+
             return View(orderDetails);
         }
 
